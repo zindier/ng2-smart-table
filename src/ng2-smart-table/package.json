@@ -1,22 +1,22 @@
 {
   "name": "ngx-smart-table",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Angular Smart Table",
   "main": "./bundles/table.umd.js",
   "module": "./index.js",
   "typings": "./index.d.ts",
-  "author": "akveo",
+  "author": "zindier",
   "license": "MIT",
   "scripts": {
   },
   "repository": {
     "type": "git",
-    "url": "git+http://zindier.github.io/ngx-smart-table.git"
+    "url": "git+http://github.com/zindier/ngx-smart-table.git"
   },
   "bugs": {
-    "url": "http://zindier.github.io/ngx-smart-table/issues"
+    "url": "https://github.com/zindier/ngx-smart-table/issues"
   },
-  "homepage": "http://zindier.github.io/ngx-smart-table/#readme",
+  "homepage": "https://zindier.github.io/ngx-smart-table/",
   "keywords": [
     "angular",
     "typescript",
