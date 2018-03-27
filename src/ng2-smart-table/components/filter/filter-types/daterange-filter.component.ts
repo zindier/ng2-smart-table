@@ -9,7 +9,9 @@ import 'rxjs/add/operator/debounceTime';
 @Component({
   selector: 'daterange-filter',
   template: `      
-	<my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+	<my-date-range-picker class="form-control" 
+                          name="mydaterange" 
+                          [options]="myDateRangePickerOptions"
 						  (dateRangeChanged)="onDateRangeChanged($event)">
     </my-date-range-picker>
   `,
