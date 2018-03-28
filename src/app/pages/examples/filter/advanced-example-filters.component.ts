@@ -72,6 +72,9 @@ export class AdvancedExampleFiltersComponent {
   ];
 
   settings = {
+    filter: {
+      inputClass: 'example-class'
+    },
     columns: {
       id: {
         title: 'ID',
@@ -116,6 +119,7 @@ export class AdvancedExampleFiltersComponent {
       },
       date: {
         title: 'Date',
+        width: '100px',
         filter: {
           type: 'daterange',
           config: {

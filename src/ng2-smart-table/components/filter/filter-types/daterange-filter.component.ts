@@ -10,7 +10,8 @@ import 'rxjs/add/operator/debounceTime';
   selector: 'daterange-filter',
   template: `      
 	<my-date-range-picker class="form-control" 
-                          name="mydaterange" 
+                          name="mydaterange"
+						  [ngClass]="inputClass"
                           [options]="myDateRangePickerOptions"
 						  (dateRangeChanged)="onDateRangeChanged($event)">
     </my-date-range-picker>
@@ -32,6 +33,9 @@ export class DateRangeFilterComponent extends DefaultFilter implements OnInit {
   ngOnInit() {
     const config = this.column.getFilterConfig().daterange;
     this.myDateRangePickerOptions.dateFormat = config.format;
+    if (this.column.width) {
+      this.myDateRangePickerOptions.width = this.column.width;
+    }
 
     this.changesSubscription = this.dateRangeContent
         .map((ev: any) => (ev && ev.title) || ev || '')
