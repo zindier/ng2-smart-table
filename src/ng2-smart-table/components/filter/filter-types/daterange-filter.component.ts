@@ -37,16 +37,34 @@ export class DateRangeFilterComponent extends DefaultFilter implements OnInit {
       this.myDateRangePickerOptions.width = this.column.width;
     }
 
+    if (config.align) {
+      if (config.align === 'left') {
+        this.myDateRangePickerOptions.alignSelectorRight = false;
+      } else {
+        if (config.align === 'right') {
+          this.myDateRangePickerOptions.alignSelectorRight = true;
+        }
+      }
+    }
+
+    if (this.column.filterFunction === null || typeof this.column.filterFunction === 'undefined') {
+      this.column.filterFunction = (value: string, search: string) => {
+        if (search === '0..0') {
+          return true;
+        }
+
+        const dates: string[] = search.split('..');
+        const time = new Date(value).getTime() / 1000;
+        return Number.parseInt(dates[0]) < time && Number.parseInt(dates[1]) > time;
+      };
+    }
+
     this.changesSubscription = this.dateRangeContent
         .map((ev: any) => (ev && ev.title) || ev || '')
         .distinctUntilChanged()
         .debounceTime(this.delay)
-        .subscribe((search: string | any) => {
-          if (search.beginEpoc > 0) {
-            this.query = search;
-          } else {
-            this.query = '';
-          }
+        .subscribe((search: string) => {
+          this.query = search;
           this.setFilter();
         });
   }
@@ -54,6 +72,8 @@ export class DateRangeFilterComponent extends DefaultFilter implements OnInit {
   onDateRangeChanged(event: IMyDateRangeModel) {
     // event properties are: event.beginDate, event.endDate, event.formatted,
     // event.beginEpoc and event.endEpoc
-    this.dateRangeContent.next(event);
+
+    const range = `${event.beginEpoc}..${event.endEpoc}`;
+    this.dateRangeContent.next(range);
   }
 }

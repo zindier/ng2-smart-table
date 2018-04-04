@@ -73,7 +73,7 @@ export class AdvancedExampleFiltersComponent {
 
   settings = {
     filter: {
-      inputClass: 'example-class'
+      inputClass: 'example-class',
     },
     columns: {
       id: {
@@ -120,11 +120,21 @@ export class AdvancedExampleFiltersComponent {
       date: {
         title: 'Date',
         width: '100px',
+        filterFunction: (value: string, search: string) => {
+          if (search === '0..0') {
+            return true;
+          }
+
+          const dates: string[] = search.split('..');
+          const time = new Date(value).getTime() / 1000;
+          return Number.parseInt(dates[0]) < time && Number.parseInt(dates[1]) > time;
+        },
         filter: {
           type: 'daterange',
           config: {
             daterange: {
               format: 'mm/dd/yyyy',
+              align: 'right',
             },
           },
         },

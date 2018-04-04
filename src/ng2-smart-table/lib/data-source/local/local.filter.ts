@@ -1,14 +1,7 @@
 export class LocalFilter {
 
-  protected static FILTER = (value: string, search: any) => {
-    if (typeof search === 'string') {
-      return value.toString().toLowerCase().includes(search.toString().toLowerCase());
-    } else {
-      if (search.hasOwnProperty('beginEpoc') && search.hasOwnProperty('endEpoc')) {
-        const time = new Date(value).getTime() / 1000;
-        return search.beginEpoc < time && search.endEpoc > time;
-      }
-    }
+  protected static FILTER = (value: string, search: string) => {
+    return value.toString().toLowerCase().includes(search.toString().toLowerCase());
   }
 
   static filter(data: Array<any>, field: string, search: string, customFilter?: Function): Array<any> {
