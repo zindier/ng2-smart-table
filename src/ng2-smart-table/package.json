@@ -1,6 +1,6 @@
 {
   "name": "ngx-smart-table",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Angular Smart Table",
   "main": "./bundles/table.umd.js",
   "module": "./index.js",
